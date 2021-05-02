@@ -1,0 +1,35 @@
+h2 {
+    font-family: "Bookman Old Style";
+    padding: 30px 0px 0px 0px;
+    color:darkslateblue;
+}
+
+.fruit_name_p {
+    font-family: Roboto;
+    text-align: center;
+    padding: 30px 0 0 0;
+}
+
+.btn_form_div {
+
+    float: right;
+    padding: 10px 0 0 0 ;
+}
+
+.btn_total_div {
+    float: right;
+    padding: 45px 0 0 0 ;
+}
+
+button {
+    margin: 2px;
+}
+
+img {
+    width: 25%;
+    padding: 10px 10px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: auto;
+}
