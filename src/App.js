@@ -5,7 +5,7 @@ import {BrowserRouter as Router, Switch, Link, Route} from 'react-router-dom';
 
 import { Home } from './Home'
 import { Fruits } from './Fruits';
-import {Panier} from "./Panier";
+import { Panier } from "./Panier";
 import React from "react";
 import {initialStateAdd} from "./tools/environments";
 
@@ -21,7 +21,6 @@ function App() {
     setBasket(baskets);
   }
 
-
   return (
     <Router>
       <nav className="navbar navbar-expand-lg navbar-light">
@@ -36,7 +35,7 @@ function App() {
                 <Link className="nav-link active" to="/nos-fruits"> Nos Fruits </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link active" to="/panier"> Panier </Link>
+                <Link className="nav-link active" to="/panier"> Panier {(basket.total != 0) ? basket.total : ""}  </Link>
               </li>
             </ul>
           </div>

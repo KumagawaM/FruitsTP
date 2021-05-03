@@ -19,7 +19,7 @@ export const Panier = (props) => {
   });
 
 
-  const handleClickReset = (e, callback) => {
+  const handleClickReset = (e) => {
     dispatch({
       type: e.target.name,
       value: 0

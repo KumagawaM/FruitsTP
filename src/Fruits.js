@@ -58,15 +58,27 @@ export const Fruits = (props) => {
       type: e.target.name,
       value: 0
     });
-    //props.onBasketUpdate(state);
     alert(`Il y a 0 ${e.target.name} dans votre panier`);
   }
 
   const handleClickAll = (e) => {
-    dispatch ({
+    const total = appleState + raspberryState + blackberryState;
+    dispatch({
+      type: apple,
+      value: appleState
+    });
 
-    })
-    alert(`il y a dans votre panier un total de ${state.total} d'articles`);
+    dispatch({
+      type: raspberry,
+      value: raspberryState
+    });
+
+    dispatch({
+      type: blackberry,
+      value: blackberryState
+    });
+
+    alert(`il y a dans votre panier un total de ${total} d'articles`);
   }
 
   const handleClickResetAll = (e) => {
