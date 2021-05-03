@@ -4,22 +4,19 @@ export const reducerAdd = (state, action) => {
     switch(action.type) {
       case "APPLE":
         return {
+          ...state,
           apple: action.value,
-          raspberry: state.raspberry,
-          blackberry: state.blackberry,
           total: action.value + state.raspberry + state.blackberry
         }
       case "RASPBERRY":
         return {
-          apple: state.apple,
+          ...state,
           raspberry: action.value,
-          blackberry: state.blackberry,
           total: action.value + state.apple + state.blackberry
         }
       case "BLACKBERRY":
         return {
-          apple: state.apple,
-          raspberry: state.raspberry,
+          ...state,
           blackberry: action.value,
           total: action.value + state.raspberry + state.apple
         }

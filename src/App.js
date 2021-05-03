@@ -10,6 +10,7 @@ import React from "react";
 import {initialStateAdd} from "./tools/environments";
 
 function App() {
+
   const [basket, setBasket] = React.useState(initialStateAdd);
 
   const basketUpdate = (baskets) => {
@@ -46,9 +47,9 @@ function App() {
           <Home />
         </Route>
         <Route exact path="/nos-fruits">
-          <Fruits onBasketUpdate={basketUpdate} />
+          <Fruits onBasketUpdate={basketUpdate} result={basket}  />
         </Route>
-        <Route exact path={"/panier"}>
+        <Route exact path="/panier">
           <Panier onResetBasket={basketReset} result={basket} />
         </Route>
       </Switch>

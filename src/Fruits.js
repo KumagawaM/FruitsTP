@@ -8,31 +8,49 @@ import Raspberry from './resources/Raspberry_Pi.svg';
 
 import {select_Quantity} from "./tools/htmlTools";
 import {reducerAdd} from "./tools/reducer";
-import {initialStateAdd} from "./tools/environments";
-
 
 export const Fruits = (props) => {
 
-  const [state, dispatch] = React.useReducer(reducerAdd, initialStateAdd);
+  const [state, dispatch] = React.useReducer(reducerAdd, props.result);
+  const [appleState, setApple] = React.useState(0);
+  const [raspberryState, setRaspberry] = React.useState(0);
+  const [blackberryState, setBlackberry] = React.useState(0);
+
   const apple = "APPLE";
   const raspberry = "RASPBERRY";
   const blackberry = "BLACKBERRY";
 
+  React.useEffect(() => {
+    props.onBasketUpdate(state);
+    console.log("fruit: ", state);
+  })
+
   const handleChange = (e) => {
     const value = (Number.isInteger(parseInt(e.target.value))) ? parseInt(e.target.value) : 0 ;
+    switch (e.target.name) {
+      case apple :
+        setApple(value);
+        break;
+      case raspberry:
+        setRaspberry(value);
+        break;
+      case blackberry:
+        setBlackberry(value);
+        break;
+      default:
+    }
+  }
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    const value = (e.target.name == apple) ? appleState : (e.target.name == raspberry) ? raspberryState : blackberryState;
 
     dispatch({
       type: e.target.name,
       value: value,
     });
-  }
 
-  const handleClick = (e) => {
-    const value = (e.target.name == apple) ? state.apple : (e.target.name == raspberry) ? state.raspberry : state.blackberry;
     alert(`Le nombre de ${e.target.name} dans votre panier est désormais de ${value}`);
-    e.preventDefault();
-
-    props.onBasketUpdate(state);
   }
 
   const handleClickReset = (e) => {
@@ -40,12 +58,14 @@ export const Fruits = (props) => {
       type: e.target.name,
       value: 0
     });
-    props.onBasketUpdate(state);
+    //props.onBasketUpdate(state);
     alert(`Il y a 0 ${e.target.name} dans votre panier`);
   }
 
   const handleClickAll = (e) => {
-    props.onBasketUpdate(state);
+    dispatch ({
+
+    })
     alert(`il y a dans votre panier un total de ${state.total} d'articles`);
   }
 
@@ -56,7 +76,6 @@ export const Fruits = (props) => {
         value: 0
       })
     );
-    props.onBasketUpdate(state);
   }
 
   return(
@@ -96,7 +115,7 @@ export const Fruits = (props) => {
         <div className="row">
           <div className="col-sm">
             <div className="select_form_div">
-              <select className="form-select" value={(state.apple == 0) ? 0 : state.apple } name={apple} onChange={handleChange}>
+              <select className="form-select" value={appleState} name={apple} onChange={handleChange}>
                 <option defaultValue="0">Quantités</option>
                 {select_Quantity()}
               </select>
@@ -108,7 +127,7 @@ export const Fruits = (props) => {
           </div>
           <div className="col-sm">
             <div className="select_form_div">
-              <select className="form-select" name={raspberry} value={(state.raspberry == 0) ? 0 : state.raspberry } onChange={handleChange}>
+              <select className="form-select" name={raspberry} value={raspberryState } onChange={handleChange}>
                 <option defaultValue="0">Quantités</option>
                 {select_Quantity()}
               </select>
@@ -121,7 +140,7 @@ export const Fruits = (props) => {
           <div className="col-sm">
             <div className="select_form_div">
               <div className="select">
-                <select className="form-select" name={blackberry} value={(state.blackberry == 0) ? 0 : state.blackBerry } onChange={handleChange}>
+                <select className="form-select" name={blackberry} value={blackberryState} onChange={handleChange}>
                   <option defaultValue="0">Quantités</option>
                   {select_Quantity("BLACKBERRY")}
                 </select>

@@ -13,33 +13,17 @@ export const Panier = (props) => {
 
   const [state, dispatch] = React.useReducer(reducerAdd, props.result);
 
-  const dispatchBasket = (e, callback) => {
+  React.useEffect(() => {
+    props.onResetBasket(state);
+    console.log(state);
+  });
+
+
+  const handleClickReset = (e, callback) => {
     dispatch({
       type: e.target.name,
       value: 0
     })
-
-    callback();
-    console.log('1: ',state);
-  }
-
-  const recupPros = () => {
-    props.onResetBasket(state);
-
-  }
-
-  const handleClickReset = (e, callback) => {
-    /*dispatch({
-      type: e.target.name,
-      value: 0
-    })*/
-
-    dispatchBasket(e,recupPros);
-    console.log(state);
-
-
-
-
   }
 
   const handleClickPay = (e) => {
@@ -53,12 +37,9 @@ export const Panier = (props) => {
         type : "RESET",
         value : 0
       })
-
     } else {
       alert( `vous n'avez aucun article dans votre panier`);
     }
-
-    props.onResetBasket(state);
   }
 
   return (
